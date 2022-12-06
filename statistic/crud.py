@@ -16,7 +16,8 @@ def create_statistic(statistic: StatisticCreate, db: Session):
 
 def get_statistic(start_date: date, end_date: date, db: Session):
     statistics = db.query(Statistic)\
-        .filter(Statistic.date >= start_date, Statistic.date <= end_date)\
+        .filter(Statistic.date >= start_date, Statistic.date <= end_date) \
+        .order_by(Statistic.date, Statistic.views) \
         .all()
     all_statistics = []
     for statistic in statistics:

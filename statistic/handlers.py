@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 
 from fastapi import Depends
@@ -25,7 +26,9 @@ def add_statistic(statistic: StatisticCreate, db: Session = Depends(get_db)):
 
 
 @router.get('/get/', response_model=list[StatisticOut])
-def get_statistic(start_date: date, end_date: date, db: Session = Depends(get_db)):
+def get_statistic(start_date: date = datetime.date.today(),
+                  end_date: date = datetime.date.today(),
+                  db: Session = Depends(get_db)):
     statistic_out = crud.get_statistic(start_date, end_date, db)
     return statistic_out
 
