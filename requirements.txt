@@ -3,3 +3,4 @@ uvicorn==0.20.0
 sqlalchemy==1.4.44
 alembic==1.8.1
 psycopg2-binary==2.9.5
+environs==9.5.0
