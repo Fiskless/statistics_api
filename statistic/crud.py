@@ -21,22 +21,14 @@ def get_statistic(start_date: date, end_date: date, db: Session):
         .all()
     all_statistics = []
     for statistic in statistics:
-        try:
-            cpc = statistic.cost / statistic.clicks
-        except ZeroDivisionError:
-            cpc = 0
-        try:
-            cpm = statistic.cost / statistic.views * 1000
-        except ZeroDivisionError:
-            cpm = 0
         all_statistics.append(
             StatisticOut(
                 date=statistic.date,
                 views=statistic.views,
                 clicks=statistic.clicks,
                 cost=statistic.cost,
-                cpc=cpc,
-                cpm=cpm
+                cpc=statistic.get_average_click_cost,
+                cpm=statistic.get_average_cost_thousand_views
             ))
     return all_statistics
 
