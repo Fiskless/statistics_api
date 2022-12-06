@@ -11,9 +11,21 @@ class StatisticCreate(BaseModel):
     class Config:
         orm_mode = True
 
+    @validator('cost')
+    def check_cost_accuracy(cls, value):
+        return format(value, '.2g')
+
 
 class StatisticOut(StatisticCreate):
     cpc: float = Field(None, ge=0)
     cpm: float = Field(None, ge=0)
+
+    @validator('cpc')
+    def check_cpc_accuracy(cls, value):
+        return format(value, '.2g')
+
+    @validator('cpm')
+    def check_cpm_accuracy(cls, value):
+        return format(value, '.2g')
 
 
