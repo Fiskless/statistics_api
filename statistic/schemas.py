@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 from datetime import date
 
 
@@ -10,3 +10,10 @@ class StatisticCreate(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class StatisticOut(StatisticCreate):
+    cpc: float = Field(None, ge=0)
+    cpm: float = Field(None, ge=0)
+
+
