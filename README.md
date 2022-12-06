@@ -142,4 +142,4 @@ curl -X 'DELETE' \
 
 
 ## Технологии
-docker, docker-compose, fastapi, alembic, sqlalchemy
+docker, docker-compose, fastapi, alembic, sqlalchemy 
