@@ -13,7 +13,7 @@ class StatisticCreate(BaseModel):
 
     @validator('cost')
     def check_cost_accuracy(cls, value):
-        return format(value, '.2g')
+        return float("{:.2f}".format(value))
 
 
 class StatisticOut(StatisticCreate):
@@ -22,10 +22,10 @@ class StatisticOut(StatisticCreate):
 
     @validator('cpc')
     def check_cpc_accuracy(cls, value):
-        return format(value, '.2g')
+        return float("{:.2f}".format(value))
 
     @validator('cpm')
     def check_cpm_accuracy(cls, value):
-        return format(value, '.2g')
+        return float("{:.2f}".format(value))
 
 

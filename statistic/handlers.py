@@ -5,7 +5,6 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from database.database import SessionLocal
-from database.models import Statistic
 from . import crud
 from .router import router
 from .schemas import StatisticCreate, StatisticOut

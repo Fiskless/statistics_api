@@ -19,18 +19,16 @@ def get_statistic(start_date: date, end_date: date, db: Session):
         .filter(Statistic.date >= start_date, Statistic.date <= end_date) \
         .order_by(Statistic.date, Statistic.views) \
         .all()
-    all_statistics = []
-    for statistic in statistics:
-        all_statistics.append(
-            StatisticOut(
-                date=statistic.date,
-                views=statistic.views,
-                clicks=statistic.clicks,
-                cost=statistic.cost,
-                cpc=statistic.get_average_click_cost,
-                cpm=statistic.get_average_cost_thousand_views
-            ))
-    return all_statistics
+    return [
+        StatisticOut(
+            date=statistic.date,
+            views=statistic.views,
+            clicks=statistic.clicks,
+            cost=statistic.cost,
+            cpc=statistic.get_average_click_cost,
+            cpm=statistic.get_average_cost_thousand_views
+        ) for statistic in statistics
+    ]
 
 
 def delete_statistic(db: Session):
